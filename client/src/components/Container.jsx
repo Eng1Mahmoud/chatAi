@@ -11,6 +11,7 @@ function ChatContainer() {
   const [scrollHeight, setScrollHeight] = useState(0);
   const [prompt, setPrompt] = useState("");
   const refChat = useRef(null);
+  const refTextArea = useRef(null);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStop(false); // set  stop false
@@ -18,7 +19,7 @@ function ChatContainer() {
     // Store the textarea value in the messages state
     setMessages([...messages, { isAi: false, value: prompt }]);
     try {
-      const response = await axios.post("http://localhost:5000/", {
+      const response = await axios.post("https://ai-pxtt.onrender.com", {
         prompt: prompt,
       });
       // add the AI response to the messages array
@@ -68,6 +69,10 @@ function ChatContainer() {
       handleSubmit(e);
     }
   };
+// focus on input field when loud site
+  useEffect(()=>{
+    refTextArea.current.focus()
+  },[])
   return (
     <>
       <div id="chat_container" ref={refChat}>
@@ -106,6 +111,7 @@ function ChatContainer() {
           name="prompt"
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
+          ref={refTextArea}
         ></textarea>
         <button type="submit">
           <FaLocationArrow size={22} />

@@ -183,4 +183,7 @@ form img {
   #chat_container {
     width: 95%;
   }
+  .welcome{
+    margin-top: 5%;
+  }
 }

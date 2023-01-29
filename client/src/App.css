@@ -122,7 +122,9 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-
+.typing-effect-cursor {
+  visibility: hidden;
+}
 /* hides scrollbar */
 .message::-webkit-scrollbar {
   display: none;
@@ -161,6 +163,9 @@ textarea {
   caret-color: white;
   font-weight: 500;
   text-transform: capitalize;
+}
+.hidden{
+  visibility: hidden;
 }
 textarea::-webkit-scrollbar {
   display: none;

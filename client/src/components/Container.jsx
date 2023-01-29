@@ -10,9 +10,13 @@ function ChatContainer() {
   const [stop, setStop] = useState(false);
   const [scrollHeight, setScrollHeight] = useState(0);
   const [prompt, setPrompt] = useState("");
+  const [hidden, setHidden] = useState("");
+  const [louading, setLouading] = useState(false);
   const refChat = useRef(null);
   const refTextArea = useRef(null);
   const handleSubmit = async (e) => {
+    setHidden("hidden");
+    setLouading(true);
     e.preventDefault();
     setStop(false); // set  stop false
 
@@ -31,10 +35,12 @@ function ChatContainer() {
       // empty prompt
       setPrompt("");
       stops(response.data.bot.trim()); // execute stops function after the AI response
+      setHidden("");
     } catch (err) {
       setMessages([...messages, { isAi: true, value: "Something went wrong" }]);
       alert(err);
     }
+    setLouading(false);
   };
   const stops = (value) => {
     // this function to stop typing effect after text finsh
@@ -113,6 +119,7 @@ function ChatContainer() {
                         text={message.value}
                         speed={70}
                         repeat={"false"}
+                        cursorClassName="hidden"
                       />
                     ) : (
                       // if stop is true then stop typing effect by replacing by default message
@@ -127,6 +134,23 @@ function ChatContainer() {
             </div>
           ))
         )}
+        {louading ? (
+          <div className="wrapper">
+            <div className="chat ai">
+              <div className="profile">
+                <img src={bot} alt="bot" />
+              </div>
+              <div className="message">
+                loading{" "}
+                <ReactTypingEffect
+                  text={"...."}
+                  speed={150}
+                  cursorClassName="hidden"
+                />
+              </div>
+            </div>
+          </div>
+        ) : null}
       </div>
       <form onSubmit={handleSubmit} onKeyDown={(e) => handleKeyDown(e)}>
         <textarea
@@ -134,6 +158,7 @@ function ChatContainer() {
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           ref={refTextArea}
+          className={`${hidden}`}
         ></textarea>
         <button type="submit">
           <FaLocationArrow size={22} />

@@ -19,7 +19,7 @@ function ChatContainer() {
     // Store the textarea value in the messages state
     setMessages([...messages, { isAi: false, value: prompt }]);
     try {
-      const response = await axios.post("https://ai-pxtt.onrender.com", {
+      const response = await axios.post("https://ai-pxtt.onrender.com/", {
         prompt: prompt,
       });
       // add the AI response to the messages array

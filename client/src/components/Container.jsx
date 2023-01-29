@@ -78,7 +78,7 @@ function ChatContainer() {
       <div id="chat_container" ref={refChat}>
         {messages.length === 0 ? (
           <div className="welcome">
-            <h1>Welcome To Open AI</h1>
+            <h2>Welcome To Open AI</h2>
             <div>
               Hello everyone, my name is Mahmoud Mohamed, I work as a front-end
               developer for user interfaces, I have prepared this site to help

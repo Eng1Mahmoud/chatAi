@@ -40,6 +40,27 @@ body {
 #chat_container::-webkit-scrollbar {
   display: none;
 }
+.welcome {
+  background: #40414f;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  color: white;
+  padding: 30px;
+  margin-top: 15%;
+  font-size: 22px;
+  text-align: center;
+}
+
+.welcome p {
+  padding-top: 20px;
+}
+.welcome p strong a {
+  text-decoration: none;
+  color: #10a37f;
+}
 .wrapper {
   width: 100%;
   padding: 15px;
@@ -122,6 +143,10 @@ form {
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
+  position: fixed;
+  bottom: 15px;
+  left: 5%;
+  right: 5%;
 }
 
 textarea {
@@ -155,7 +180,7 @@ form img {
 }
 
 @media (max-width: 767px) {
-  #chat_container{
+  #chat_container {
     width: 95%;
   }
 }

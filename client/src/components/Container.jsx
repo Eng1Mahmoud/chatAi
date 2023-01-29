@@ -69,42 +69,64 @@ function ChatContainer() {
       handleSubmit(e);
     }
   };
-// focus on input field when loud site
-  useEffect(()=>{
-    refTextArea.current.focus()
-  },[])
+  // focus on input field when loud site
+  useEffect(() => {
+    refTextArea.current.focus();
+  }, []);
   return (
     <>
       <div id="chat_container" ref={refChat}>
-        {messages.map((message, index) => (
-          <div className="wrapper" key={index}>
-            <div className={`chat ${message.isAi ? "ai" : "user"}`}>
-              <div className="profile">
-                <img
-                  src={message.isAi ? bot : user}
-                  alt={message.isAi ? "bot" : "user"}
-                />
-              </div>
-              <div className="message">
-                {message.isAi ? ( // if the message is ai applay type effect
-                  index === messages.length - 1 && !stop ? ( // aplay effect on last message
-                    <ReactTypingEffect
-                      text={message.value}
-                      speed={70}
-                      repeat={"false"}
-                    />
+        {messages.length === 0 ? (
+          <div className="welcome">
+            <h1>Welcome To Open AI</h1>
+            <div>
+              Hello everyone, my name is Mahmoud Mohamed, I work as a front-end
+              developer for user interfaces, I have prepared this site to help
+              programmers solve a lot of programming problems, and it is a
+              chatgpt simulator. This site is not limited to programmers. It is
+              available to everyone. Thank you for your good reading of this
+              paragraph. I hope you have a good time with us
+            </div>
+            <p>
+              You can contact me via the next linkedin account{" "}
+              <strong>
+                <a href="http://www.linkedin.com/in/mahmoudmohamed1">
+                  Mahmoud Mohamed
+                </a>
+              </strong>
+            </p>
+          </div>
+        ) : (
+          messages.map((message, index) => (
+            <div className="wrapper" key={index}>
+              <div className={`chat ${message.isAi ? "ai" : "user"}`}>
+                <div className="profile">
+                  <img
+                    src={message.isAi ? bot : user}
+                    alt={message.isAi ? "bot" : "user"}
+                  />
+                </div>
+                <div className="message">
+                  {message.isAi ? ( // if the message is ai applay type effect
+                    index === messages.length - 1 && !stop ? ( // aplay effect on last message
+                      <ReactTypingEffect
+                        text={message.value}
+                        speed={70}
+                        repeat={"false"}
+                      />
+                    ) : (
+                      // if stop is true then stop typing effect by replacing by default message
+                      message.value
+                    )
                   ) : (
-                    // if stop is true then stop typing effect by replacing by default message
-                    message.value
-                  )
-                ) : (
-                  // if message is user then display with in effect
-                  message.value.trim()
-                )}
+                    // if message is user then display with in effect
+                    message.value.trim()
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
       <form onSubmit={handleSubmit} onKeyDown={(e) => handleKeyDown(e)}>
         <textarea

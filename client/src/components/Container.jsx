@@ -155,6 +155,7 @@ function ChatContainer() {
       <form onSubmit={handleSubmit} onKeyDown={(e) => handleKeyDown(e)}>
         <textarea
           name="prompt"
+          placeholder="Ask me any question"
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           ref={refTextArea}

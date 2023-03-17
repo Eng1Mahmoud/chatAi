@@ -26,6 +26,7 @@ function ChatContainer() {
       const response = await axios.post("https://ai-pxtt.onrender.com/", {
         prompt: prompt,
       });
+    
       // add the AI response to the messages array
       setMessages([
         ...messages,

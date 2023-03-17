@@ -27,11 +27,13 @@ app.post("/", async (req, res) => {
 
     const completion = openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: prompt }],
+      messages: [{ role: "user", content: "hello" }],
     });
-    completion.then((res) => {
+    completion.then((response) => {
+      const botResponse = response.data.choices[0].message.content;
+      console.log(botResponse);
       res.status(200).send({
-        bot: res.data.choices[0].message.content,
+        bot: botResponse,
       });
     });
   } catch (error) {
@@ -39,6 +41,9 @@ app.post("/", async (req, res) => {
     res.status(500).send(error || "Something went wrong");
   }
 });
+
+
+
 
 app.listen(5000, () =>
   console.log("AI server started on http://localhost:5000")
